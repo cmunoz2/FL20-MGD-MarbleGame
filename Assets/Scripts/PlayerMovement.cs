@@ -7,6 +7,7 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     public Button jumpButton;
+    public Button dashButton;
 
     public bool phoneIsConnected = false;
 
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     AudioSource aud;
     bool isGrounded = true;
     bool canJump = false;
-    bool canDash = true;
+    bool canDash = false;
 
     int score = 0;
     int coinScore = 250;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         aud = GameObject.Find("AudioSource").GetComponent<AudioSource>();
         jumpButton.interactable = false;
+        dashButton.interactable = false;
     }
 
     void Update() {
@@ -128,6 +130,12 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("CustomCam")){
             mainCam.SetActive(false);
             other.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        if(other.gameObject.name == "Dash Pickup"){
+            canDash = true;
+            dashButton.interactable = true;
+            aud.PlayOneShot(jumpClip);
+            Destroy(other.gameObject);
         }
     }
 
