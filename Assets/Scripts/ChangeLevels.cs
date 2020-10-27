@@ -9,8 +9,21 @@ public class ChangeLevels : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
-            if(destination == "") destination = "MainMenu";
-           UnityEngine.SceneManagement.SceneManager.LoadScene(destination);
+            other.GetComponent<PlayerMovement>().ResetPlayer();
+            GotToNextLevel();
         }
+    }
+
+    public void GotToNextLevel(int index = 0) {
+        if(index != 0){
+            //Going to specific level 
+            UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+            return;
+        }
+        else if (destination == ""){
+            destination = "MainMenu";
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(destination);
+    
     }
 }
