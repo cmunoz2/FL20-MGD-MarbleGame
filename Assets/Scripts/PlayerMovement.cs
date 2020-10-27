@@ -97,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
             aud.PlayOneShot(jumpClip);
         }
     }
+    // DONT FORGET TO ADD PICKUP FOR DASH POWER,, 
+    // DONT FORGET TO ADD COOLDOWN FOR DASH
 
     void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Ground")) {
