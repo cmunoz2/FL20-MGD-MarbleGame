@@ -12,6 +12,11 @@ public class ChangeLevels : MonoBehaviour
     [Tooltip("Name of the scene you want to go to.")]
     public string destination;
 
+    void Start()
+    {
+        GameObject.Find("BackgroundMusic").GetComponent<PlayBackgroundMusic>().CheckForNewWorld2();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
@@ -23,7 +28,8 @@ public class ChangeLevels : MonoBehaviour
 
     public void GotToNextLevel(int index = 0) 
     {
-        //StartCoroutine();
+        transition.SetTrigger("Start");
+        //yield return new WaitForSeconds(transitionTime);
         if(index != 0)
         {
             //Going to specific level 
@@ -34,6 +40,7 @@ public class ChangeLevels : MonoBehaviour
         {
             destination = "MainMenu";
         }
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene(destination);
     }
 

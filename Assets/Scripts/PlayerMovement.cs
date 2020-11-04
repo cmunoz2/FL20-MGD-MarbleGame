@@ -6,11 +6,7 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Button jumpButton;
-    public Button dashButton;
-
     public bool phoneIsConnected = false;
-
 
     [Header("Movement")]
     public float jumpForce = 5f;
@@ -24,7 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Score")]
     public TextMeshProUGUI scoreText;
-
+    
+    [Header("Other Stuff")]
+    public Button jumpButton;
+    public Button dashButton;
     [Tooltip("Assign the Main Camera to This")]
     public GameObject mainCam;
 
